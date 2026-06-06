@@ -1,5 +1,8 @@
 # AgriWeather KE 🌿
 
+Designed By: Franklin Okoth Onyango
+mail: franklinokoth002@gmail.com
+
 Agricultural weather intelligence dashboard for Kenyan farmers, powered by the [WeatherAI REST API](https://weather-ai.co/docs).
 
 ![AgriWeather KE Screenshot](screenshot-placeholder.png)
