@@ -1,0 +1,20 @@
+# Dependencies — reinstalled inside the container
+node_modules
+
+# Build output — rebuilt inside the container
+dist
+
+# Local secrets — NEVER bake API keys into an image
+.env.local
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Version control
+.git
+.gitignore
+
+# Docs (not needed in the image)
+README.md

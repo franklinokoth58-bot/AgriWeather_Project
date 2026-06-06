@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # ----------------------------------------------------------
+  # Development service — Vite dev server with HMR
+  # Start: docker-compose up agriweather-dev
+  # ----------------------------------------------------------
+  agriweather-dev:
+    build:
+      context: .
+      target: development
+    container_name: agriweather-dev
+    ports:
+      - '5173:5173'
+    env_file:
+      - .env.local
+    volumes:
+      # Mount source so edits are reflected instantly (HMR)
+      - .:/app
+      # Preserve the container's node_modules — prevents the
+      # host's node_modules from overwriting the container's
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  # ----------------------------------------------------------
+  # Production service — nginx serving the compiled bundle
+  # Start: docker-compose --profile prod up agriweather-prod
+  # The `profiles` key means this service is opt-in only.
+  # ----------------------------------------------------------
+  agriweather-prod:
+    build:
+      context: .
+      target: production
+    container_name: agriweather-prod
+    ports:
+      - '80:80'
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    profiles:
+      - prod
